@@ -33,7 +33,6 @@ Future<void> main() async {
       statusBarBrightness: Brightness.dark,
       statusBarColor: Colors.transparent));
   WidgetsFlutterBinding.ensureInitialized();
-
   var app = await Firebase.initializeApp(
       options: FirebaseOptions(
     appId: appId,

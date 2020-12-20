@@ -29,9 +29,9 @@ class PlayerWidget extends StatefulWidget {
 }
 
 class _PlayerWidgetState extends State<PlayerWidget> {
-  String titleText = 'Loading...';
-  String subTitleText = 'Please wait...';
-  String buttonLabel = 'Donate';
+  String titleText = 'Loading...'; //Translate
+  String subTitleText = 'Please wait...'; //Translate
+  String buttonLabel = 'Donate'; //Translate
   String buttonUrl = 'http://meditofoundation.org/donate';
   String buttonIcon = 'assets/images/ic_gift.svg';
   String illustrationUrl;
@@ -453,7 +453,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
 
   Future<void> _share() {
     Share.share(
-        "I just meditated with Medito. I ❤️ this app! Try it out - it's 100% free! Download on Android -> https://bit.ly/medito-android & iOS -> https://bit.ly/medito-ios");
+        "I just meditated with Medito. I ❤️ this app! Try it out - it's 100% free! Download on Android -> https://bit.ly/medito-android & iOS -> https://bit.ly/medito-ios");//Translate
     Tracking.trackEvent(
       Tracking.CTA_TAPPED,
       Tracking.SECOND_CTA_TAPPED,
@@ -463,10 +463,10 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   }
 
   void defaultText() {
-    titleText = 'Well done for taking time for yourself!';
+    titleText = 'Well done for taking time for yourself!';//Translate
     subTitleText =
-        'Taking care of yourself is important. We’re here to help you do it, for free, forever.';
-    buttonLabel = 'Donate';
+        'Taking care of yourself is important. We’re here to help you do it, for free, forever.';//Translate
+    buttonLabel = 'Donate';//Translate
     buttonUrl = 'http://meditofoundation.org/donate';
     buttonIcon = 'assets/images/ic_gift.svg';
   }

@@ -59,7 +59,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
                     ),
                     Container(height: 16),
                     Text(
-                      'With your help we can continue building a more mindful world. We’re here for you. Thanks for being here for us.',
+                      'With your help we can continue building a more mindful world. We’re here for you. Thanks for being here for us.', //Translate
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
@@ -95,7 +95,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
                             child: FlatButton(
                                 color: MeditoColors.peacefulPink,
                                 child: Text(
-                                    'Tell your friends you\'ve helped Medito',
+                                    'Tell your friends you\'ve helped Medito', //Translate
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText2
@@ -132,7 +132,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
 
   Future<void> _share() {
     Share.share(
-        'I just donated to @meditohq to help build a more mindful world ❤️ Join me on their 100% free meditation app https://meditofoundation.org');
+        'I just donated to @meditohq to help build a more mindful world ❤️ Join me on their 100% free meditation app https://meditofoundation.org'); //Translate
     return null;
   }
 }

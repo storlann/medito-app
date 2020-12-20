@@ -156,12 +156,12 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
                           buildDescriptionText(),
                           _showVoiceChoice ? buildSpacer() : Container(),
                           _showVoiceChoice
-                              ? buildTextHeaderForRow('Voice')
+                              ? buildTextHeaderForRow('Voice')//Translate
                               : Container(),
                           buildVoiceRow(),
                           buildSpacer(),
                           ////////// spacer
-                          buildTextHeaderForRow('Session length'),
+                          buildTextHeaderForRow('Session length'),//Translate
                           buildSessionLengthRow(),
                           getBGMusicSpacer(),
                           ////////// spacer
@@ -187,7 +187,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
   }
 
   Widget getBGMusicRowOrContainer() => _backgroundMusicAvailable
-      ? buildTextHeaderForRow('Background Sounds')
+      ? buildTextHeaderForRow('Background Sounds')//Translate
       : Container();
 
   Widget getBGMusicSpacer() =>
@@ -204,7 +204,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
             if (value >= 1) {
               return Icon(Icons.play_arrow, color: parseColor(_secondaryColor));
             } else {
-              print('Updated value: ' + (value * 100).toInt().toString());
+              print('Updated value: ' + (value * 100).toInt().toString()); //Translate
               return SizedBox(
                   height: 12,
                   width: 12,
@@ -554,7 +554,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
               shape: buildChipBorder(),
               showCheckmark: false,
               labelPadding: buildInnerChipPadding(),
-              label: Text(index == 0 ? 'No' : 'Yes'),
+              label: Text(index == 0 ? 'No' : 'Yes'), //Translate
               selected: _offlineSelected == index,
               onSelected: (bool value) {
                 onOfflineSelected(index);
@@ -736,7 +736,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
   void _onFirstFutureError(dynamic error) {
     // set up the button
     Widget _errorDialogOkButton = FlatButton(
-      child: Text('Go back and refresh'.toUpperCase()),
+      child: Text('Go back and refresh'.toUpperCase()), //Translate
       textColor: MeditoColors.lightTextColor,
       onPressed: () {
         //once to close the dialog, once to go back
@@ -749,7 +749,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
     var alert = AlertDialog(
       title: Text('Oops!'),
       backgroundColor: MeditoColors.darkBGColor,
-      content: Text('An error has occured. This session may have been moved.'),
+      content: Text('An error has occured. This session may have been moved.'), //Translate
       actions: [
         _errorDialogOkButton,
       ],

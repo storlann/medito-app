@@ -107,13 +107,13 @@ class _DonationWidgetState extends State<DonationWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('1. Donation type',
+                        Text('1. Donation type', //Translate
                             style: Theme.of(context).textTheme.headline2),
                         Container(height: 12),
                         _donationTypeRow(),
                         _giveSelected == ONCE ? _begView() : Container(),
                         Container(height: 32),
-                        Text('2. Amount you want to give',
+                        Text('2. Amount you want to give', //Translate
                             style: Theme.of(context).textTheme.headline2),
                         Container(height: 12),
                         _donationGrid(),
@@ -178,7 +178,7 @@ class _DonationWidgetState extends State<DonationWidget> {
                   ? MeditoColors.peacefulBlue
                   : MeditoColors.moonlight,
               child: Text(
-                '♥️ Give Monthly',
+                '♥️ Give Monthly', //Translate
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                     fontWeight: FontWeight.w500,
                     color: _giveSelected == MONTHLY
@@ -379,7 +379,7 @@ class _DonationWidgetState extends State<DonationWidget> {
           children: [
             Expanded(
               child: Text(
-                'A monthly donation helps us reach even more people & plan ahead',
+                'A monthly donation helps us reach even more people & plan ahead', //Translate
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.headline3,
               ),
@@ -419,7 +419,7 @@ class _DonationWidgetState extends State<DonationWidget> {
           child: Text.rich(
             TextSpan(
               text:
-                  'Medito Foundation is a nonprofit registered in the UK & Netherlands. ',
+                  'Medito Foundation is a nonprofit registered in the UK & Netherlands. ', //Translate
               style: Theme.of(context).textTheme.headline3,
               children: <TextSpan>[
                 TextSpan(

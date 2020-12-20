@@ -75,7 +75,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
       children: [
         Text(
           '3. What\'s your email address?',
-          style: Theme.of(context).textTheme.headline2,
+          style: Theme.of(context).textTheme.headline2, //Translate
         ),
         Container(height: 12),
         _getEmailAddressBox(),
@@ -84,7 +84,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
             style: Theme.of(context).textTheme.headline2),
         Container(height: 12),
         Text(
-            'We’ll send you updates, let you know how your donation is spent and if we need your support.',
+            'We’ll send you updates, let you know how your donation is spent and if we need your support.', //Translate
             style: Theme.of(context)
                 .textTheme
                 .caption
@@ -182,7 +182,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
           children: [
             Expanded(
               child: Text(
-                '😔 We\'re sorry to hear that. Please hit YES if you are curious about what we do and how you can help in other ways! We don\'t email often.',
+                '😔 We\'re sorry to hear that. Please hit YES if you are curious about what we do and how you can help in other ways! We don\'t email often.', //Translate
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.caption,
               ),
@@ -220,11 +220,11 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
           child: Text.rich(
             TextSpan(
               text:
-                  'We really care about your privacy. We’ll never spam you or sell your data. ',
+                  'We really care about your privacy. We’ll never spam you or sell your data. ', //Translate
               style: Theme.of(context).textTheme.bodyText2,
               children: <TextSpan>[
                 TextSpan(
-                    text: 'Tap here to read our privacy policy.',
+                    text: 'Tap here to read our privacy policy.', //Translate
                     recognizer: TapGestureRecognizer()
                       ..onTap = () =>
                           launchUrl('https://meditofoundation.org/privacy'),

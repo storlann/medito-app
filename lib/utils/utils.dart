@@ -286,7 +286,7 @@ void showConsentDialog(BuildContext context) {
         backgroundColor: MeditoColors.moonlight,
         content: getMarkdownBody(
             '### We’d like to automatically collect information about your use of Medito so we can make it better.\n ### You don’t have to do anything & the data collected is anonymous.\n [Learn more by tapping here.](https://meditofoundation.org/privacy)',
-            context),
+            context), //Translate
         actions: [
           Container(
             height: 48,
@@ -299,7 +299,7 @@ void showConsentDialog(BuildContext context) {
                 Navigator.pop(context);
               },
               child: Text(
-                'DECLINE',
+                'DECLINE', //Translate
                 style: Theme.of(context).textTheme.headline3.copyWith(
                     color: MeditoColors.walterWhite, fontWeight: FontWeight.bold),
               ),
@@ -318,7 +318,7 @@ void showConsentDialog(BuildContext context) {
                 Navigator.pop(context);
               },
               child: Text(
-                ' ACCEPT ',
+                ' ACCEPT ', //Translate
                 style: Theme.of(context).textTheme.headline3.copyWith(
                     color: MeditoColors.darkMoon, fontWeight: FontWeight.bold),
               ),
