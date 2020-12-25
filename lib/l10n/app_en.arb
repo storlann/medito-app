@@ -1,0 +1,14 @@
+{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "helpUs": "With your help we can continue building a more mindful world. We’re here for you. Thanks for being here for us.",
+  "@helpUs": {
+    "description": "Thank you for helping us"
+  },
+  "currentStreak": "Current Streak",
+  "@currentStreak": {
+    "description": "The user's streak in meditating consistently"
+  }
+}

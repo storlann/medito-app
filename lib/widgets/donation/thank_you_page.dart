@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ThankYouWidget extends StatefulWidget {
   @override
@@ -59,7 +61,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
                     ),
                     Container(height: 16),
                     Text(
-                      'With your help we can continue building a more mindful world. We’re here for you. Thanks for being here for us.', //Translate
+                      AppLocalizations.of(context).helpUs,
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme

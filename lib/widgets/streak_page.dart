@@ -19,6 +19,8 @@ import 'package:Medito/utils/stats_utils.dart';
 import 'package:Medito/widgets/app_bar_widget.dart';
 import 'package:Medito/widgets/streak_tiles_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Add this line
+
 
 class StreakWidget extends StatefulWidget {
   StreakWidget({Key key}) : super(key: key);
