@@ -61,7 +61,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
                     ),
                     Container(height: 16),
                     Text(
-                      AppLocalizations.of(context).helpUs,
+                      'With your help we can continue building a more mindful world. We’re here for you. Thanks for being here for us.', //AppLocalizations.of(context).helpUs,
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme

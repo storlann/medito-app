@@ -3,12 +3,84 @@
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
+
   "helpUs": "With your help we can continue building a more mindful world. We’re here for you. Thanks for being here for us.",
   "@helpUs": {
     "description": "Thank you for helping us"
   },
+
   "currentStreak": "Current Streak",
   "@currentStreak": {
     "description": "The user's streak in meditating consistently"
+  },
+
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading..."
+  },
+
+  "stats": "Stats",
+  "@stats": {
+    "description": "Statistics page header"
+  },
+
+  "pleaseWait": "Please wait...",
+  "@pleaseWait": {
+    "description": "Please wait a moment"
+  },
+
+  "donate": "Donate",
+  "@donate": {
+    "description": "Donate"
+  },
+
+  "thirdPointAskEmail": "3. What's your email address?",
+  "@thirdPointAskEmail": {
+    "description": "Ask for user's email"
+  },
+
+  "fourthPointShouldContact": "4. Can we stay in touch?",
+  "@fourthPointShouldContact": {
+    "description": "Asking the user if we can contact them"
+  },
+
+  "feedbackThanks": "Thanks for the feedback!",
+  "@feedbackThanks": {
+    "description": "Thanking the user for the feedback in internal rating mechanism"
+  },
+
+  "buffering": "Buffering",
+  "@buffering": {
+    "description": "Buffering"
+  },
+
+  "shareMessage": "I just meditated with Medito. I ❤️ this app! Try it out - it's 100% free! Download on Android -> https://bit.ly/medito-android & iOS -> https://bit.ly/medito-ios",
+  "@shareMessage": {
+    "description": "Message for the user to share on Social Media"
+  },
+
+  "selfTime": "Well done for taking time for yourself!",
+  "@selfTime": {
+    "description": "Good work meditating"
+  },
+
+  "selfCare": "Taking care of yourself is important.",
+  "@selfCare": {
+    "description": "Self care is important"
+  },
+
+  "enterEmail": "Enter your email here",
+  "@enterEmail": {
+    "description": "Ask user to enter email"
+  },
+
+  "noEmail": "\uD83D\uDE14 We're sorry to hear that. Please hit YES if you are curious about what we do and how you can help in other ways! We don't email often.",
+  "@noEmail": {
+    "description": "emoji we are sad you didn't enter email. we dont send spam"
+  },
+
+  "invalidEmail": "Enter a valid email address",
+  "@invalidEmail": {
+    "description": "Enter a valid email address"
   }
 }

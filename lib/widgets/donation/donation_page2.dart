@@ -75,13 +75,13 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
       children: [
         Text(
           '3. What\'s your email address?',
-          style: Theme.of(context).textTheme.headline2, //Translate
+          style: Theme.of(context).textTheme.headline2, //thirdPointAskEmail
         ),
         Container(height: 12),
         _getEmailAddressBox(),
         Container(height: 32),
         Text('4. Can we stay in touch?',
-            style: Theme.of(context).textTheme.headline2),
+            style: Theme.of(context).textTheme.headline2), //fourthPointShouldContact
         Container(height: 12),
         Text(
             'We’ll send you updates, let you know how your donation is spent and if we need your support.', //Translate
@@ -182,7 +182,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
           children: [
             Expanded(
               child: Text(
-                '😔 We\'re sorry to hear that. Please hit YES if you are curious about what we do and how you can help in other ways! We don\'t email often.', //Translate
+                '😔 We\'re sorry to hear that. Please hit YES if you are curious about what we do and how you can help in other ways! We don\'t email often.', //noEmail
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.caption,
               ),
@@ -256,7 +256,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
           controller: _emailController,
           cursorColor: MeditoColors.walterWhite,
           decoration: InputDecoration(
-            hintText: 'Enter your email here',
+            hintText: 'Enter your email here', //enterEmail
             hintStyle: Theme.of(context)
                 .textTheme
                 .headline3
@@ -285,7 +285,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
     var regex = RegExp(pattern);
     if (!regex.hasMatch(value) || value == null) {
       _emailValid = false;
-      return 'Enter a valid email address';
+      return 'Enter a valid email address'; //invalidEmail
     } else {
       _emailValid = true;
       return null;

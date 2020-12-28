@@ -33,11 +33,11 @@ Future<void> main() async {
       statusBarBrightness: Brightness.dark,
       statusBarColor: Colors.transparent));
   WidgetsFlutterBinding.ensureInitialized();
-  // var appId = "1";
-  // var apiKey = "1";
-  // var messagingSenderId = "1";
-  // var projectId = "1";
-  // var databaseURL = "1";
+  var appId = "1";
+  var apiKey = "1";
+  var messagingSenderId = "1";
+  var projectId = "1";
+  var databaseURL = "1";
   //var appId = "1"
   var app = await Firebase.initializeApp(
       options: FirebaseOptions(

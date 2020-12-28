@@ -29,9 +29,9 @@ class PlayerWidget extends StatefulWidget {
 }
 
 class _PlayerWidgetState extends State<PlayerWidget> {
-  String titleText = 'Loading...'; //Translate
-  String subTitleText = 'Please wait...'; //Translate
-  String buttonLabel = 'Donate'; //Translate
+  String titleText = 'Loading...'; //loading
+  String subTitleText = 'Please wait...'; //pleaseWait
+  String buttonLabel = 'Donate'; //donate
   String buttonUrl = 'http://meditofoundation.org/donate';
   String buttonIcon = 'assets/images/ic_gift.svg';
   String illustrationUrl;
@@ -270,7 +270,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
       children: [
         CircularProgressIndicator(),
         Container(height: 16),
-        Text('Buffering')
+        Text('Buffering') //buffering
       ],
     ));
   }
@@ -429,7 +429,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
 
   void _thanksPopUp() {
     createSnackBarWithColor('Thanks for the feedback!', _scaffoldContext,
-        MeditoColors.peacefulBlue);
+        MeditoColors.peacefulBlue); //feedbackThanks
     addCurrentDateToSF('UserDeclinedRating');
     Future.delayed(Duration(seconds: 3))
         .then((value) => Navigator.pop(context));
@@ -453,7 +453,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
 
   Future<void> _share() {
     Share.share(
-        "I just meditated with Medito. I ❤️ this app! Try it out - it's 100% free! Download on Android -> https://bit.ly/medito-android & iOS -> https://bit.ly/medito-ios");//Translate
+        "I just meditated with Medito. I ❤️ this app! Try it out - it's 100% free! Download on Android -> https://bit.ly/medito-android & iOS -> https://bit.ly/medito-ios"); //shareMessage
     Tracking.trackEvent(
       Tracking.CTA_TAPPED,
       Tracking.SECOND_CTA_TAPPED,
@@ -463,10 +463,10 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   }
 
   void defaultText() {
-    titleText = 'Well done for taking time for yourself!';//Translate
+    titleText = 'Well done for taking time for yourself!'; //selfTime
     subTitleText =
-        'Taking care of yourself is important. We’re here to help you do it, for free, forever.';//Translate
-    buttonLabel = 'Donate';//Translate
+        'Taking care of yourself is important. We’re here to help you do it, for free, forever.';//selfCare + freeForever
+    buttonLabel = 'Donate';//donate
     buttonUrl = 'http://meditofoundation.org/donate';
     buttonIcon = 'assets/images/ic_gift.svg';
   }
