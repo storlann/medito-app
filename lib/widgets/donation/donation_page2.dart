@@ -84,7 +84,7 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
             style: Theme.of(context).textTheme.headline2), //fourthPointShouldContact
         Container(height: 12),
         Text(
-            'We’ll send you updates, let you know how your donation is spent and if we need your support.', //Translate
+            'We’ll send you updates, let you know how your donation is spent and if we need your support.', //donationUsage
             style: Theme.of(context)
                 .textTheme
                 .caption
@@ -220,11 +220,11 @@ class _DonationWidgetPage2State extends State<DonationWidgetPage2> {
           child: Text.rich(
             TextSpan(
               text:
-                  'We really care about your privacy. We’ll never spam you or sell your data. ', //Translate
+                  'We really care about your privacy. We’ll never spam you or sell your data. ', //carePrivacy + spamSellData
               style: Theme.of(context).textTheme.bodyText2,
               children: <TextSpan>[
                 TextSpan(
-                    text: 'Tap here to read our privacy policy.', //Translate
+                    text: 'Tap here to read our privacy policy.', //readPrivacy
                     recognizer: TapGestureRecognizer()
                       ..onTap = () =>
                           launchUrl('https://meditofoundation.org/privacy'),

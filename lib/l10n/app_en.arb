@@ -82,5 +82,30 @@
   "invalidEmail": "Enter a valid email address",
   "@invalidEmail": {
     "description": "Enter a valid email address"
+  },
+
+  "donationUsage": "We’ll send you updates, let you know how your donation is spent and if we need your support.",
+  "@donationUsage": {
+    "description": "We’ll send you updates, let you know how your donation is spent and if we need your support."
+  },
+
+  "freeForever": "We’re here to help you do it, for free, forever.",
+  "@freeForever": {
+    "description": "Medito is always free"
+  },
+
+  "carePrivacy": "We really care about your privacy.",
+  "@carePrivacy": {
+    "description": "We are secure"
+  },
+
+  "spamSellData": "We’ll never spam you or sell your data.",
+  "@spamSellData": {
+    "description": "We'll not send unnecessary emails or sell private data"
+  },
+
+  "readPrivacy": "Tap here to read our privacy policy.",
+  "@readPrivacy": {
+    "description": "Tap here to read our privacy policy."
   }
 }
