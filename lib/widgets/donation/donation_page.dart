@@ -419,7 +419,7 @@ class _DonationWidgetState extends State<DonationWidget> {
           child: Text.rich(
             TextSpan(
               text:
-                  'Medito Foundation is a nonprofit registered in the UK & Netherlands. ', //UKNonProfit
+                  'Medito Foundation is a nonprofit registered in the UK & Netherlands. ', //meditoUKNonProfit
               style: Theme.of(context).textTheme.headline3,
               children: <TextSpan>[
                 TextSpan(

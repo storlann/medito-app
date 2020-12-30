@@ -176,8 +176,8 @@
     "description": "Next"
   },
 
-  "UKNonProfit": "Medito Foundation is a nonprofit registered in the UK & Netherlands",
-  "@UKNonProfit": {
+  "meditoUKNonProfit": "Medito Foundation is a nonprofit registered in the UK & Netherlands",
+  "@meditoUKNonProfit": {
     "description": "Medito Foundation is a nonprofit registered in the UK & Netherlands"
   },
 
