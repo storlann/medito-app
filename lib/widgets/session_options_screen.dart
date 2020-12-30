@@ -155,12 +155,12 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
                           buildDescriptionText(),
                           _showVoiceChoice ? buildSpacer() : Container(),
                           _showVoiceChoice
-                              ? buildTextHeaderForRow('Voice')//Translate
+                              ? buildTextHeaderForRow('Voice')//voice
                               : Container(),
                           buildVoiceRow(),
                           buildSpacer(),
                           ////////// spacer
-                          buildTextHeaderForRow('Session length'),//Translate
+                          buildTextHeaderForRow('Session length'),//sessionLength
                           buildSessionLengthRow(),
                           getBGMusicSpacer(),
                           ////////// spacer
@@ -169,7 +169,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
                           buildSpacer(),
                           ////////// spacer
                           buildTextHeaderForRow(
-                              'Available Offline $_availableOfflineIndicatorText'),
+                              'Available Offline $_availableOfflineIndicatorText'), //availableOffline
                           buildOfflineRow(),
                           Container(height: 80)
                         ],
@@ -186,7 +186,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
   }
 
   Widget getBGMusicRowOrContainer() => _backgroundMusicAvailable
-      ? buildTextHeaderForRow('Background Sounds')//Translate
+      ? buildTextHeaderForRow('Background Sounds')//bgSounds
       : Container();
 
   Widget getBGMusicSpacer() =>
@@ -203,7 +203,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
             if (value >= 1) {
               return Icon(Icons.play_arrow, color: parseColor(_secondaryColor));
             } else {
-              print('Updated value: ' + (value * 100).toInt().toString()); //Translate
+              print('Updated value: ' + (value * 100).toInt().toString());
               return SizedBox(
                   height: 12,
                   width: 12,
@@ -552,7 +552,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
               shape: buildChipBorder(),
               showCheckmark: false,
               labelPadding: buildInnerChipPadding(),
-              label: Text(index == 0 ? 'No' : 'Yes'), //Translate
+              label: Text(index == 0 ? 'No' : 'Yes'), //no, yes
               selected: _offlineSelected == index,
               onSelected: (bool value) {
                 onOfflineSelected(index);
@@ -668,7 +668,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
         downloadSingleton.start(currentFile);
       } else {
         _offlineSelected = 0;
-        createSnackBarWithColor('Another Download in Progress', scaffoldContext,
+        createSnackBarWithColor('Another Download in Progress', scaffoldContext, //anotherDownload
             MeditoColors.peacefulBlue);
       }
     } else {
@@ -734,7 +734,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
   void _onFirstFutureError(dynamic error) {
     // set up the button
     Widget _errorDialogOkButton = FlatButton(
-      child: Text('Go back and refresh'.toUpperCase()), //Translate
+      child: Text('Go back and refresh'.toUpperCase()), //pleaseRefresh
       textColor: MeditoColors.lightTextColor,
       onPressed: () {
         //once to close the dialog, once to go back
@@ -747,7 +747,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
     var alert = AlertDialog(
       title: Text('Oops!'),
       backgroundColor: MeditoColors.darkBGColor,
-      content: Text('An error has occured. This session may have been moved.'), //Translate
+      content: Text('An error has occured. This session may have been moved.'), //sessionMovedError
       actions: [
         _errorDialogOkButton,
       ],

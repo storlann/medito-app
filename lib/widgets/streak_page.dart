@@ -50,7 +50,7 @@ class _StreakWidgetState extends State<StreakWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              MeditoAppBarWidget(title: 'Stats'), //Translate
+              MeditoAppBarWidget(title: 'Stats'), //stats
               Container(height: 16),
               Padding(
                 padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -65,13 +65,13 @@ class _StreakWidgetState extends State<StreakWidget> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          StreakTileWidget(getCurrentStreak(), 'Current Streak', //Translate
+                          StreakTileWidget(getCurrentStreak(), 'Current Streak', //currentStreak
                               onClick: openEditDialog,
                               editable: true,
                               optionalText: UnitType.day),
                           Container(height: 16),
                           StreakTileWidget(
-                              getMinutesListened(), 'Minutes Listened', //Translate
+                              getMinutesListened(), 'Minutes Listened', //minutesListened
                               optionalText: UnitType.min)
                         ],
                       ),
@@ -84,14 +84,14 @@ class _StreakWidgetState extends State<StreakWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          StreakTileWidget(getLongestStreak(), 'Longest Streak', //Translate
+                          StreakTileWidget(getLongestStreak(), 'Longest Streak', //longestStreak
                               editable: true,
                               onClick: openResetDialog,
                               optionalText: UnitType.day),
                           Container(height: 16),
                           StreakTileWidget(
                             getNumSessions(),
-                            'Number of Sessions', //Translate
+                            'Number of Sessions', //sessionCount
                           )
                         ],
                       ),
@@ -122,7 +122,7 @@ class _StreakWidgetState extends State<StreakWidget> {
           child: AlertDialog(
             shape: roundedRectangleBorder(),
             backgroundColor: MeditoColors.moonlight,
-            title: Text('How many days is your streak?',//Translate
+            title: Text('How many days is your streak?',//streakLengthQuestion
                 style: Theme.of(context).textTheme.headline5),
             content: TextField(
               textAlign: TextAlign.center,
@@ -148,7 +148,7 @@ class _StreakWidgetState extends State<StreakWidget> {
                       child: FlatButton(
                         onPressed: _onCancelTap,
                         child: Text(
-                          'CANCEL',//Translate
+                          'CANCEL',//cancel
                           style: Theme.of(context).textTheme.headline3.copyWith(
                               color: MeditoColors.walterWhite,
                               fontWeight: FontWeight.bold),
@@ -165,7 +165,7 @@ class _StreakWidgetState extends State<StreakWidget> {
                         shape: roundedRectangleBorder(),
                         color: MeditoColors.walterWhite,
                         child: Text(
-                          'SAVE',
+                          'SAVE', //save
                           style: Theme.of(context).textTheme.headline3.copyWith(
                               color: MeditoColors.darkMoon,
                               fontWeight: FontWeight.bold),
@@ -216,7 +216,7 @@ class _StreakWidgetState extends State<StreakWidget> {
           child: AlertDialog(
             shape: roundedRectangleBorder(),
             backgroundColor: MeditoColors.moonlight,
-            title: Text('Reset longest streak to your current streak?',//Translate
+            title: Text('Reset longest streak to your current streak?',//resetStreakQuestion
                 style: Theme.of(context).textTheme.headline5),
             actions: <Widget>[
               Padding(
@@ -231,7 +231,7 @@ class _StreakWidgetState extends State<StreakWidget> {
                         shape: roundedRectangleBorder(),
                         color: MeditoColors.moonlight,
                         child: Text(
-                          'CANCEL',//Translate
+                          'CANCEL',//cancel
                           style: Theme.of(context).textTheme.headline3.copyWith(
                               color: MeditoColors.walterWhite,
                               fontWeight: FontWeight.bold),
@@ -248,7 +248,7 @@ class _StreakWidgetState extends State<StreakWidget> {
                         shape: roundedRectangleBorder(),
                         color: MeditoColors.walterWhite,
                         child: Text(
-                          'RESET',//Translate
+                          'RESET',//reset
                           style: Theme.of(context).textTheme.headline3.copyWith(
                               color: MeditoColors.moonlight,
                               fontWeight: FontWeight.bold),

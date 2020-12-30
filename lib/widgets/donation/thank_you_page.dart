@@ -97,7 +97,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
                             child: FlatButton(
                                 color: MeditoColors.peacefulPink,
                                 child: Text(
-                                    'Tell your friends you\'ve helped Medito', //Translate
+                                    'Tell your friends you\'ve helped Medito', //shareDonationPrompt
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText2
@@ -134,7 +134,7 @@ class _ThankYouWidgetState extends State<ThankYouWidget> {
 
   Future<void> _share() {
     Share.share(
-        'I just donated to @meditohq to help build a more mindful world ❤️ Join me on their 100% free meditation app https://meditofoundation.org'); //Translate
+        'I just donated to @meditohq to help build a more mindful world ❤️ Join me on their 100% free meditation app https://meditofoundation.org'); //shareDonationMessage
     return null;
   }
 }

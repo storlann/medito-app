@@ -107,13 +107,13 @@ class _DonationWidgetState extends State<DonationWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('1. Donation type', //Translate
+                        Text('1. Donation type', //firstPointDonationType
                             style: Theme.of(context).textTheme.headline2),
                         Container(height: 12),
                         _donationTypeRow(),
                         _giveSelected == ONCE ? _begView() : Container(),
                         Container(height: 32),
-                        Text('2. Amount you want to give', //Translate
+                        Text('2. Amount you want to give', //secondPointAmount
                             style: Theme.of(context).textTheme.headline2),
                         Container(height: 12),
                         _donationGrid(),
@@ -157,7 +157,7 @@ class _DonationWidgetState extends State<DonationWidget> {
                   ? MeditoColors.peacefulBlue
                   : MeditoColors.moonlight,
               child: Text(
-                'Give Once',
+                'Give Once', //giveOnce
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                     fontWeight: FontWeight.w500,
                     color: _giveSelected == ONCE
@@ -178,7 +178,7 @@ class _DonationWidgetState extends State<DonationWidget> {
                   ? MeditoColors.peacefulBlue
                   : MeditoColors.moonlight,
               child: Text(
-                '♥️ Give Monthly', //Translate
+                '♥️ Give Monthly', //giveMonthly
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                     fontWeight: FontWeight.w500,
                     color: _giveSelected == MONTHLY
@@ -345,7 +345,7 @@ class _DonationWidgetState extends State<DonationWidget> {
             child: FlatButton(
               color: MeditoColors.peacefulBlue,
               child: Text(
-                'Next',
+                'Next', //next
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
                       color: MeditoColors.moonlight,
                       fontWeight: FontWeight.w500,
@@ -379,7 +379,7 @@ class _DonationWidgetState extends State<DonationWidget> {
           children: [
             Expanded(
               child: Text(
-                'A monthly donation helps us reach even more people & plan ahead', //Translate
+                'A monthly donation helps us reach even more people & plan ahead', //monthlyDonationHelps
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.headline3,
               ),
@@ -419,11 +419,11 @@ class _DonationWidgetState extends State<DonationWidget> {
           child: Text.rich(
             TextSpan(
               text:
-                  'Medito Foundation is a nonprofit registered in the UK & Netherlands. ', //Translate
+                  'Medito Foundation is a nonprofit registered in the UK & Netherlands. ', //UKNonProfit
               style: Theme.of(context).textTheme.headline3,
               children: <TextSpan>[
                 TextSpan(
-                    text: 'Tap here to learn more.',
+                    text: 'Tap here to learn more.', //learnMore
                     recognizer: TapGestureRecognizer()
                       ..onTap = () => launchUrl(
                           'https://meditofoundation.org/about/foundation'),

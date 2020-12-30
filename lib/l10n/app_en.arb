@@ -107,5 +107,152 @@
   "readPrivacy": "Tap here to read our privacy policy.",
   "@readPrivacy": {
     "description": "Tap here to read our privacy policy."
+  },
+
+
+  "resetStreakQuestion": "Reset longest streak to your current streak?",
+  "@resetStreakQuestion": {
+    "description": "Reset longest streak to your current streak?"
+  },
+
+  "firstPointDonationType": "1. Donation type",
+  "@firstPointDonationType": {
+    "description": "1. Donation type"
+  },
+
+  "secondPointAmount": "2. Amount you want to give",
+  "@secondPointAmount": {
+    "description": "2. Amount you want to give"
+  },
+
+  "cancel": "CANCEL",
+  "@cancel": {
+    "description": "CANCEL"
+  },
+
+
+  "reset": "RESET",
+  "@reset": {
+    "description": "RESET"
+  },
+
+  "minutesListened": "Minutes Listened",
+  "@minutesListened": {
+    "description": "Minutes Listened"
+  },
+
+  "longestStreak": "Longest Streak",
+  "@longestStreak": {
+    "description": "Longest Streak"
+  },
+
+  "sessionCount": "Number of Sessions",
+  "@sessionCount": {
+    "description": "Number of Sessions"
+  },
+
+  "streakLengthQuestion": "How many days is your streak?",
+  "@streakLengthQuestion": {
+    "description": "How many days is your streak?"
+  },
+
+  "save": "SAVE",
+  "@save": {
+    "description": "SAVE"
+  },
+
+  "giveOnce": "Give Once",
+  "@giveOnce": {
+    "description": "Give Once"
+  },
+
+  "giveMonthly": "♥️ Give Monthly",
+  "@giveMonthly": {
+    "description": "(heart symbol) Give Monthly"
+  },
+
+  "next": "Next",
+  "@next": {
+    "description": "Next"
+  },
+
+  "UKNonProfit": "Medito Foundation is a nonprofit registered in the UK & Netherlands",
+  "@UKNonProfit": {
+    "description": "Medito Foundation is a nonprofit registered in the UK & Netherlands"
+  },
+
+  "learnMore": "Tap here to learn more.",
+  "@learnMore": {
+    "description": "Tap here to learn more."
+  },
+
+  "voice": "Voice",
+  "@voice": {
+    "description": "Voice"
+  },
+
+  "monthlyDonationHelps": "A monthly donation helps us reach even more people & plan ahead",
+  "@monthlyDonationHelps": {
+    "description": "A monthly donation helps us reach even more people & plan ahead"
+  },
+
+  "sessionLength": "Session Length",
+  "@sessionLength": {
+    "description": "Session Length"
+  },
+
+  "availableOffline": "Available Offline",
+  "@availableOffline": {
+    "description": "Available Offline"
+  },
+
+  "anotherDownload": "Another Download in Progress",
+  "@anotherDownload": {
+    "description": "Another Download in Progress"
+  },
+
+  "pleaseRefresh": "Go back and refresh",
+  "@pleaseRefresh": {
+    "description": "Go back and refresh"
+  },
+
+  "sessionMovedError": "An error has occurred. This session may have been moved.",
+  "@sessionMovedError": {
+    "description": "An error has occurred. This session may have been moved."
+  },
+
+  "shareDonationPrompt": "An error has occured. This session may have been moved.",
+  "@shareDonationPrompt": {
+    "description": "An error has occured. This session may have been moved."
+  },
+
+  "shareDonationMessage": "I just donated to @meditohq to help build a more mindful world ❤️ Join me on their 100% free meditation app https://meditofoundation.org",
+  "@shareDonationMessage": {
+    "description": "I just donated to (insta handle) to help build a more mindful world (heart logo)️ Join me on their 100% free meditation app https://meditofoundation.org"
+  },
+
+  "privacyConsent": "### We’d like to automatically collect information about your use of Medito so we can make it better.\\n ### You don’t have to do anything & the data collected is anonymous.\\n [Learn more by tapping here.](https://meditofoundation.org/privacy)",
+  "@privacyConsent": {
+    "description": "Privacy Statement"
+  },
+
+  "decline": "DECLINE",
+  "@decline": {
+    "description": "DECLINE"
+  },
+
+  "accept": " ACCEPT ",
+  "@accept": {
+    "description": " ACCEPT "
+  },
+
+  "no": "NO",
+  "@no": {
+    "description": "NO"
+  },
+
+  "yes": "YES",
+  "@yes": {
+    "description": "YES"
   }
 }
