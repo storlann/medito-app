@@ -67,17 +67,18 @@ class _HomeWidgetState extends State<HomeWidget> {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: RefreshIndicator(
           onRefresh: () {
             return _refresh();
-          },
+          },          
           child: StreamBuilder<bool>(
               stream: _bloc.connectionStreamController.stream,
               builder: (context, connectionSnapshot) {
                 if (connectionSnapshot.hasData && !connectionSnapshot.data) {
                   return _buildErrorPacksWidget();
                 } else {
-                  return ListView(
+                  return ListView(                    
                     physics: AlwaysScrollableScrollPhysics(),
                     children: [
                       _getAppBar(context),
@@ -138,9 +139,9 @@ class _HomeWidgetState extends State<HomeWidget> {
     return _bloc.fetchMenu(skipCache: true);
   }
 
-  AppBar _getAppBar(BuildContext context) {
+AppBar _getAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: MeditoColors.darkMoon,
+      backgroundColor: MeditoColors.darkCyan,
       elevation: 0,
       actionsIconTheme: IconThemeData(color: MeditoColors.walterWhite),
       title: _getTitleWidget(context),
@@ -185,7 +186,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           return PopupMenuItem<MenuData>(
             value: data,
             child: Text(data.itemLabel,
-                style: Theme.of(context).textTheme.headline4),
+                style: Theme.of(context).textTheme.headline5),
           );
         }).toList();
       },
@@ -194,12 +195,12 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   Widget _getTitleWidget(BuildContext context) => FutureBuilder<String>(
       future: _bloc.getTitleText(DateTime.now()),
-      initialData: 'Medito',
+      initialData: 'Mothachas',
       builder: (context, snapshot) {
         return GestureDetector(
           onLongPress: () => _showVersionPopUp(context),
           child:
-              Text(snapshot.data, style: Theme.of(context).textTheme.headline1),
+              Text(snapshot.data, style: Theme.of(context).textTheme.headline5),
         );
       });
 

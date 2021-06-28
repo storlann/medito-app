@@ -107,17 +107,24 @@ class _ParentWidgetState extends State<ParentWidget>
               ? _getLoadingWidget()
               : Scaffold(
                   key: _messengerKey,
-                  body: IndexedStack(
-                    index: _currentIndex,
-                    children: _children,
-                  ),
+                  body: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/mothachas/background.png'), 
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child:IndexedStack(
+                      index: _currentIndex,
+                      children: _children,
+                    ),
+                  ),                  
                   bottomNavigationBar: Container(
                     decoration: BoxDecoration(
                         color: MeditoColors.softGrey,
-                        border: Border(
-                            top: BorderSide(
-                                color: MeditoColors.softGrey, width: 2.0))),
+                    ),
                     child: BottomNavigationBar(
+                      backgroundColor: MeditoColors.darkCyan,
                       selectedLabelStyle: Theme.of(context)
                           .textTheme
                           .headline1
@@ -132,20 +139,20 @@ class _ParentWidgetState extends State<ParentWidget>
                       onTap: _onTabTapped,
                       items: [
                         BottomNavigationBarItem(
-                          tooltip: 'Home',
+                          tooltip: 'Dachaigh',
                           icon: Icon(
                             Icons.home_outlined,
                             size: 20,
                           ),
-                          label: 'Home',
+                          label: 'Dachaigh',
                         ),
                         BottomNavigationBarItem(
                           icon: Icon(
                             Icons.format_list_bulleted_outlined,
                             size: 20,
                           ),
-                          tooltip: 'Packs',
-                          label: 'Packs',
+                          tooltip: 'Pasgain',
+                          label: 'Pasgain',
                         ),
                       ],
                     ),
@@ -154,7 +161,7 @@ class _ParentWidgetState extends State<ParentWidget>
         },
         theme: ThemeData(
             splashColor: MeditoColors.moonlight,
-            canvasColor: MeditoColors.darkMoon,
+            canvasColor: MeditoColors.midCyan,
             pageTransitionsTheme: PageTransitionsTheme(builders: {
               TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
               TargetPlatform.android: SlideTransitionBuilder(),

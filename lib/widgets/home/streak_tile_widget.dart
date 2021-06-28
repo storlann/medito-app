@@ -49,10 +49,10 @@ class _StreakTileWidgetState extends State<StreakTileWidget> {
               unit = getUnits(widget.optionalText, value);
             }
             return InkWell(
-              splashColor: MeditoColors.softGrey,
+              splashColor: MeditoColors.purple,
               onTap: widget.onClick,
               child: Ink(
-                color: MeditoColors.moonlight,
+                color: MeditoColors.darkCyan,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
                     minWidth: 132.0,
@@ -67,7 +67,7 @@ class _StreakTileWidgetState extends State<StreakTileWidget> {
                         Text(widget.title,
                             maxLines: 2,
                             overflow: TextOverflow.fade,
-                            style: Theme.of(context).textTheme.subtitle1),
+                            style: Theme.of(context).textTheme.headline5),
                         SizedBox(height: 4),
                         Wrap(
                           direction: Axis.horizontal,
@@ -80,7 +80,7 @@ class _StreakTileWidgetState extends State<StreakTileWidget> {
                                       ' ' +
                                       unit ??
                                   '',
-                              style: Theme.of(context).textTheme.headline4,
+                              style: Theme.of(context).textTheme.headline5,
                               overflow: TextOverflow.fade,
                               maxLines: 1,
                             ),

@@ -15,7 +15,7 @@ TextTheme meditoTextTheme(BuildContext context) {
           letterSpacing: 0.5,
           fontWeight: FontWeight.w800,
           height: 1.5,
-          color: MeditoColors.walterWhite,
+          color: MeditoColors.darkCyan,
         ),
         headline2: TextStyle(
           // btm bar text unselected
@@ -31,13 +31,21 @@ TextTheme meditoTextTheme(BuildContext context) {
           letterSpacing: 0.5,
           fontWeight: FontWeight.w800,
           height: 1.3,
-          color: MeditoColors.walterWhite,
+          color: MeditoColors.darkCyan,
         ),
         headline4: TextStyle(
           // packs title on home and packs screen
           // streak tile data (not title)
           // downloads tile session name
           // overflow menu
+          fontSize: 16,
+          letterSpacing: 0.5,
+          fontWeight: FontWeight.w600,
+          height: 1.3,
+          color: MeditoColors.darkCyan,
+        ),
+        headline5: TextStyle(
+          // streaks panel title
           fontSize: 16,
           letterSpacing: 0.5,
           fontWeight: FontWeight.w600,
@@ -52,16 +60,16 @@ TextTheme meditoTextTheme(BuildContext context) {
           letterSpacing: 0.4,
           fontWeight: FontWeight.w500,
           height: 1.5,
-          color: MeditoColors.meditoTextGrey,
-        ),
+          color: MeditoColors.darkCyan,
+        ),        
         subtitle2: TextStyle(
           // shortcut title
           fontSize: 14,
           letterSpacing: 0.2,
           fontWeight: FontWeight.w700,
           height: 1.5,
-          color: MeditoColors.walterWhite,
-        ),
+          color: MeditoColors.darkCyan,
+        ),        
         caption: TextStyle(
           // shortcut title
           fontSize: 12,
@@ -84,7 +92,7 @@ TextTheme meditoTextTheme(BuildContext context) {
           letterSpacing: 0.5,
           fontWeight: FontWeight.w400,
           height: 1.5,
-          color: MeditoColors.walterWhite,
+          color: MeditoColors.darkCyan,
         ),
       ));
 }

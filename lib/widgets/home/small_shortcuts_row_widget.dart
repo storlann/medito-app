@@ -41,7 +41,7 @@ class SmallShortcutsRowWidgetState extends State<SmallShortcutsRowWidget> {
                 return _getLoadingWidget();
                 break;
               case Status.COMPLETED:
-                return GridView.count(
+                return GridView.count(                
                   crossAxisCount: 2,
                   padding:
                       const EdgeInsets.only(left: 12.0, right: 12.0, top: 8.0),
@@ -53,7 +53,7 @@ class SmallShortcutsRowWidgetState extends State<SmallShortcutsRowWidget> {
                       (index) {
                     return Card(
                       clipBehavior: Clip.antiAlias,
-                      color: MeditoColors.deepNight,
+                      color: MeditoColors.lightGrey,
                       child: SmallShortcutWidget(
                           snapshot.data.body.data[index], widget.onTap),
                     );

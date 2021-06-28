@@ -42,7 +42,7 @@ class _StatsWidgetState extends State<StatsWidget> {
       case 0:
         return StreakTileWidget(
           getCurrentStreak(),
-          'Current streak',
+          'Strìoc',
           onClick: openEditDialog,
           editable: true,
           optionalText: UnitType.day,
@@ -50,13 +50,13 @@ class _StatsWidgetState extends State<StatsWidget> {
       case 1:
         return StreakTileWidget(
           getMinutesListened(),
-          'Listened',
+          'Èist',
           optionalText: UnitType.min,
         );
       case 2:
         return StreakTileWidget(
           getLongestStreak(),
-          'Longest streak',
+          'Strìoc as fhaide',
           editable: true,
           onClick: openResetDialog,
           optionalText: UnitType.day,
@@ -64,7 +64,7 @@ class _StatsWidgetState extends State<StatsWidget> {
       case 3:
         return StreakTileWidget(
           getNumSessions(),
-          'Total',
+          'Iomlan',
           optionalText: UnitType.sessions,
         );
     }

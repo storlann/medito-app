@@ -18,9 +18,11 @@ import 'dart:async';
 import 'package:Medito/network/api_response.dart';
 import 'package:Medito/network/home/home_repo.dart';
 import 'package:Medito/network/home/menu_response.dart';
+import 'package:Medito/utils/strings.dart';
 import 'package:Medito/utils/utils.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';
+
 
 class HomeBloc {
   final HomeRepo _repo;
@@ -51,11 +53,11 @@ class HomeBloc {
 
   Future<String> getTitleText(DateTime now) async {
     if (now.hour < 12 && now.hour >= 2) {
-      return 'Good morning';
+      return GOOD_MORNING;
     } else if (now.hour < 18 && now.hour >= 12) {
-      return 'Good afternoon';
+      return GOOD_EVENING;
     } else {
-      return 'Good evening';
+      return GOOD_EVENING;
     }
   }
 

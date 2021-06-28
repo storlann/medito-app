@@ -31,7 +31,7 @@ class CoursesRowWidgetState extends State<CoursesRowWidget> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.only(top: 32.0, left: 16, bottom: 8.0),
-        child: Text('Courses', style: Theme.of(context).textTheme.headline3),
+        child: Text('Cùrsaichean', style: Theme.of(context).textTheme.headline3),
       ),
       SizeChangedLayoutNotifier(
         child: StreamBuilder<ApiResponse<CoursesResponse>>(

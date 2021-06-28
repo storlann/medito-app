@@ -41,12 +41,12 @@ class HeaderWidget extends StatelessWidget {
   final vertical;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return StreamBuilder<String>(
         stream: primaryColorController.stream,
         builder: (context, snapshot) {
           return Container(
-            color: MeditoColors.intoTheNight,
+            color: MeditoColors.lightGrey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
