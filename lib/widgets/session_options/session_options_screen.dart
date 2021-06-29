@@ -80,15 +80,18 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
       descriptionController: _bloc.descController,
       vertical: true);
 
-  Future<void> _onBeginTap(AudioFile item) {
+  Future<void> _onBeginTap(MediaFile item) {
     if (_bloc.isDownloading(item) || showIndeterminateSpinner) return null;
 
     _bloc.saveOptionsSelectionsToSharedPreferences(widget.id);
 
-    _bloc.startAudioService(item);
-
-    NavigationFactory.navigate(context, Screen.player, id: widget.id);
-
+    if (item.type == null || item.type == 'audio') {
+      _bloc.startAudioService(item);
+      NavigationFactory.navigate(context, Screen.player, id: widget.id);
+    } else {
+      var mediaItem = _bloc.getMediaItemForMediaFile(item);
+      NavigationFactory.navigate(context, Screen.videoPlayer, id: widget.id, mediaItem: mediaItem);
+    }
     return null;
   }
 
@@ -154,7 +157,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
         ],
       );
 
-  Widget _getListItem(BuildContext context, AudioFile item) {
+  Widget _getListItem(BuildContext context, MediaFile item) {
     return ListTile(
       contentPadding: const EdgeInsets.only(left: 24, right: 4),
       title: Text('-  ${formatSessionLength(item.length)}',
@@ -166,7 +169,17 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
     );
   }
 
-  Widget _getTrailing(AudioFile item) {
+  Widget _getTrailing(MediaFile item) {
+    //only audio can be downloaded at the moment
+    if (item.type !=null && item.type =="video") {
+      return Padding(
+        padding: const EdgeInsets.only(right: 12.0),
+        child: Icon(
+          _getVideoIcon(),
+          color: MeditoColors.meditoTextGrey,
+        )
+      );
+    }
     if (_bloc.isDownloading(item)) {
       return IconButton(onPressed: () {}, icon: _getLoadingSpinner(item));
     }
@@ -188,8 +201,9 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
   }
 
   IconData _getDownloadedIcon() => Icons.file_download_done;
+  IconData _getVideoIcon() => Icons.ondemand_video;
 
-  Widget _getLoadingSpinner(AudioFile item) {
+  Widget _getLoadingSpinner(MediaFile item) {
     return ValueListenableBuilder(
         valueListenable: _bloc.downloadSingleton.returnNotifier(),
         builder: (context, value, widget) {
@@ -213,8 +227,8 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
         });
   }
 
-  void _download(bool downloaded, AudioFile file) {
-    var mediaItem = _bloc.getMediaItemForAudioFile(file);
+  void _download(bool downloaded, MediaFile file) {
+    var mediaItem = _bloc.getMediaItemForMediaFile(file);
 
     if (downloaded) {
       DownloadsBloc.removeSessionFromDownloads(context, mediaItem)

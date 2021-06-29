@@ -4,13 +4,15 @@ import 'package:Medito/widgets/btm_nav/downloads_widget.dart';
 import 'package:Medito/widgets/btm_nav/favourites_widget.dart';
 import 'package:Medito/widgets/folders/folder_nav_widget.dart';
 import 'package:Medito/widgets/player/player_widget.dart';
+import 'package:Medito/widgets/player/video_player_widget.dart';
 import 'package:Medito/widgets/session_options/session_options_screen.dart';
 import 'package:Medito/widgets/text/text_file_widget.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 
 class NavigationFactory {
   static Future<void> navigate(BuildContext context, Screen key,
-      {String id, bool normalPop}) {
+      {String id, bool normalPop, MediaItem mediaItem}) {
     switch (key) {
       case Screen.folder:
         assert(id.isNotEmpty);
@@ -19,6 +21,9 @@ class NavigationFactory {
         break;
       case Screen.player:
         return _push(context, PlayerWidget(normalPop: normalPop));
+        break;
+      case Screen.videoPlayer:
+        return _push(context, VideoPlayerWidget(normalPop: normalPop, mediaItem: mediaItem));
         break;
       case Screen.article:
         return _push(
@@ -119,6 +124,7 @@ class NavigationFactory {
 enum Screen {
   folder,
   player,
+  videoPlayer,
   article,
   stats,
   session,

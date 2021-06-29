@@ -13,7 +13,8 @@ class MediaLibrary {
       String voice,
       String length,
         bool hasBgSound,
-      int sessionId}) {
+      int sessionId,
+      String type}) {
     return MediaItem(
       id: fileId,
       extras: {
@@ -26,6 +27,7 @@ class MediaLibrary {
         LENGTH: length,
         DURATION: durationAsMilliseconds,
         HAS_BG_SOUND : hasBgSound,
+        type: type
       },
       artist: voice,
       album: '', //empty to remove it from the notification

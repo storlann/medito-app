@@ -26,7 +26,7 @@ var downloadListener = ValueNotifier<double>(0);
 var bgDownloadListener = ValueNotifier<double>(0);
 int bgTotal = 1, bgReceived = 0;
 
-Future<dynamic> checkFileExists(AudioFile currentFile) async {
+Future<dynamic> checkFileExists(MediaFile currentFile) async {
   var filePath = (await getFilePath(currentFile.id));
   var file = File(filePath);
   var exists = await file.exists();

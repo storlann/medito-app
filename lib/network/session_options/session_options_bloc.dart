@@ -69,7 +69,7 @@ class SessionOptionsBloc {
   Future<void> fetchOptions(String id, {bool skipCache = false}) async {
     var options = await _repo.fetchOptions(id, skipCache);
 
-    var files = options.files
+    var files = options.getFiles()//options.files
         .sortedBy((e) => clockTimeToDuration(e.length).inMilliseconds)
         .toList()
         .reversed
@@ -94,18 +94,18 @@ class SessionOptionsBloc {
 
   void saveOptionsSelectionsToSharedPreferences(String id) {}
 
-  bool isDownloading(AudioFile file) => downloadSingleton.isDownloadingMe(file);
+  bool isDownloading(MediaFile file) => downloadSingleton.isDownloadingMe(file);
 
   /// File handling
   ///
-  void setFileForDownloadSingleton(AudioFile file) {
+  void setFileForDownloadSingleton(MediaFile file) {
     if (downloadSingleton == null || !downloadSingleton.isValid()) {
       downloadSingleton = DownloadSingleton(file);
     }
   }
 
-  void startAudioService(AudioFile item) {
-    var mediaItem = getMediaItemForAudioFile(item);
+  void startAudioService(MediaFile item) {
+    var mediaItem = getMediaItemForMediaFile(item);
     _trackSessionStart(mediaItem);
     unawaited(start(mediaItem));
   }
@@ -123,7 +123,7 @@ class SessionOptionsBloc {
     Tracking.trackEvent(data);
   }
 
-  MediaItem getMediaItemForAudioFile(AudioFile file) {
+  MediaItem getMediaItemForMediaFile(MediaFile file) {
     return MediaLibrary.getMediaLibrary(
         description: _options.description,
         title: _options.title,
@@ -136,10 +136,11 @@ class SessionOptionsBloc {
         durationAsMilliseconds: clockTimeToDuration(file.length).inMilliseconds,
         fileId: file.id,
         sessionId: _options.id,
-        attributions: _options.attribution);
+        attributions: _options.attribution,
+        type: file.type);
   }
 
-  List<ExpandableItem> _generateExpandableItems(List<AudioFile> items) {
+  List<ExpandableItem> _generateExpandableItems(List<MediaFile> items) {
     var voiceSet = <String>{};
     var expandableList = <ExpandableItem>[];
 
@@ -184,7 +185,7 @@ class ExpandableItem {
     this.isExpanded = false,
   });
 
-  List<AudioFile> expandedValue;
+  List<MediaFile> expandedValue;
   String headerValue;
   bool isExpanded;
 }

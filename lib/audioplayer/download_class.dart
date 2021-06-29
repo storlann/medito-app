@@ -13,19 +13,19 @@ import 'player_utils.dart';
 
 class _Download {
   bool isDownloading = false;
-  AudioFile _file;
+  MediaFile _file;
   int _received = 0, _total = 1;
   var downloadAmountListener = ValueNotifier<double>(0);
 
-  _Download(AudioFile file) {
+  _Download(MediaFile file) {
     _file = file;
   }
 
-  bool isThisFile(AudioFile file) {
+  bool isThisFile(MediaFile file) {
     return file == _file;
   }
 
-  Future<void> startDownloading(AudioFile file, MediaItem mediaItem) async {
+  Future<void> startDownloading(MediaFile file, MediaItem mediaItem) async {
     if (isDownloading) return;
     isDownloading = true;
     _file = file;
@@ -33,7 +33,7 @@ class _Download {
     await _downloadFileWithProgress(file, mediaItem);
   }
 
-  bool isDownloadingMe(AudioFile file) {
+  bool isDownloadingMe(MediaFile file) {
     if (!isDownloading) return false;
     if (!isThisFile(file)) return false;
     return isDownloading;
@@ -42,7 +42,7 @@ class _Download {
   // returns false if file already exists on in file system
   // returns true otherwise, after file is downloaded
   Future<dynamic> _downloadFileWithProgress(
-      AudioFile currentFile, MediaItem mediaItem) async {
+      MediaFile currentFile, MediaItem mediaItem) async {
     var filePath = (await getFilePath(currentFile.id));
     var file = File(filePath);
     if (file.existsSync()) {
@@ -110,7 +110,7 @@ class _Download {
 class DownloadSingleton {
   _Download _download;
 
-  DownloadSingleton(AudioFile file) {
+  DownloadSingleton(MediaFile file) {
     if (file == null) return;
     _download = _Download(file);
   }
@@ -124,18 +124,18 @@ class DownloadSingleton {
     return _download.isDownloading;
   }
 
-  bool isDownloadingMe(AudioFile file) {
+  bool isDownloadingMe(MediaFile file) {
     if (_download == null) return false;
     return _download.isDownloadingMe(file);
   }
 
-  double getProgress(AudioFile file) {
+  double getProgress(MediaFile file) {
     if (_download == null) return -1;
     if (isDownloadingMe(file)) return _download.getProgress();
     return -1;
   }
 
-  bool start(BuildContext context, AudioFile file, MediaItem mediaItem) {
+  bool start(BuildContext context, MediaFile file, MediaItem mediaItem) {
     if (_download == null) return false;
     if (_download.isDownloadingMe(file)) return true;
     if (isDownloadingSomething()) return false;

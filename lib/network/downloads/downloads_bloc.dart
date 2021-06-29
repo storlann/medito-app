@@ -53,7 +53,7 @@ class DownloadsBloc {
     return fileList;
   }
 
-  static Future<bool> isAudioFileDownloaded(AudioFile file) async {
+  static Future<bool> isAudioFileDownloaded(MediaFile file) async {
     var list = await fetchDownloads();
     var exists = false;
 

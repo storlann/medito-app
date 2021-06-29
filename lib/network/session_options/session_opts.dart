@@ -31,7 +31,16 @@ class SessionData {
   String colorPrimary;
   String colorSecondary;
   String get attribution => author?.body ?? '';
-  List<AudioFile> get files => audio.map((e) => e.file).toList()..removeWhere((element) => element == null);
+  List<MediaFile> get files => audio.map((e) => e.file).toList()..removeWhere((element) => element == null);
+
+  List<MediaFile> getFiles() {
+    if (audio != null) {
+      return audio.map((e) => e.file).toList()..removeWhere((element) => element == null);
+    }
+    if (avMedia != null) {
+      return avMedia.map((e) => e.file).toList()..removeWhere((element) => element == null);
+    }
+  }
 
   @Deprecated('Use backgroundImageUrl instead')
   String backgroundImage;
@@ -39,6 +48,7 @@ class SessionData {
   List<Audio> audio;
   @Deprecated('user attribution instead')
   Author author;
+  List<AVMedia> avMedia;
 
   SessionData(
       {id,
@@ -51,7 +61,9 @@ class SessionData {
         colorPrimary,
         colorSecondary,
         author,
-        audio});
+        audio,
+        avMedia
+      });
 
   SessionData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -70,6 +82,12 @@ class SessionData {
       audio = <Audio>[];
       json['audio'].forEach((v) {
         audio.add(Audio.fromJson(v));
+      });
+    }
+    if (json['media'] != null) {
+      avMedia = <AVMedia>[];
+      json['media'].forEach((v) {
+        avMedia.add(AVMedia.fromJson(v));
       });
     }
   }
@@ -92,6 +110,9 @@ class SessionData {
     if (audio != null) {
       data['audio'] = audio.map((v) => v.toJson()).toList();
     }
+    if (avMedia != null) {
+      data['media'] = avMedia.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
@@ -112,13 +133,14 @@ class Author {
   }
 }
 
+// TODO move to using only AVMedia
 class Audio {
-  AudioFile file;
+  MediaFile file;
 
   Audio({file});
 
   Audio.fromJson(Map<String, dynamic> json) {
-    file = json['file'] != null ? AudioFile.fromJson(json['file']) : null;
+    file = json['file'] != null ? MediaFile.fromJson(json['file']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -130,17 +152,37 @@ class Audio {
   }
 }
 
-class AudioFile {
+class AVMedia {
+  MediaFile file;
+
+  AVMedia({file});
+
+  AVMedia.fromJson(Map<String,dynamic> json) {
+    file = json['file'] != null ? MediaFile.fromJson(json['file']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (file !=null) {
+      data['file'] = file.toJson();
+    }
+    return data;
+  }
+}
+
+class MediaFile {
   String id;
   String voice;
   String length;
+  String type;
 
-  AudioFile({id, voice, length});
+  MediaFile({id, voice, length,type});
 
-  AudioFile.fromJson(Map<String, dynamic> json) {
+  MediaFile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     voice = json['voice'];
     length = json['length'];
+    type = json['type']; // audio or video
   }
 
   Map<String, dynamic> toJson() {
@@ -148,6 +190,7 @@ class AudioFile {
     data['id'] = id;
     data['voice'] = voice;
     data['length'] = length;
+    data['type'] = type; // audio or video
     return data;
   }
 }
