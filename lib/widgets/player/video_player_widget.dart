@@ -9,6 +9,7 @@ import 'package:flutter/rendering.dart';
 import 'package:Medito/utils/colors.dart';
 import 'package:Medito/network/player/player_bloc.dart';
 import 'package:Medito/network/auth.dart';
+import 'package:Medito/utils/stats_utils.dart';
 import 'package:chewie/chewie.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
@@ -52,6 +53,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             autoPlay: true,
             looping: true
         );
+
+        /* NOT WORKING YET - Trying to get the SharedPreferences / Stats module to record this video as complete
+                             so that the tick icon is displayed on the folder page like the audio files do.
+                             
+
+        _controller.addListener(() {
+          if (_controller.value.position == _controller.value.duration) {
+            //markAsListened(widget.mediaItem.id);
+            print('video Ended');
+          }
+        });
+        */
+
         setState(() {
           _loaded = true;
         });

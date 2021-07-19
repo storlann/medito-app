@@ -26,6 +26,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 //move this to network package later
 Future httpGet(String url,
     {bool skipCache = false, String fileNameForCache}) async {
+      
   var cache;
 
   if (!await checkConnectivity()) {
@@ -80,6 +81,7 @@ Future httpPost(String url, String token,
   assert(token.isNotEmpty);
   assert(token != null);
   try {
+    /*
     final response = await post(
       Uri.parse(url),
       body: encoded(body),
@@ -100,6 +102,7 @@ Future httpPost(String url, String token,
       print('HEADERS: ${response.headers}');
       print('---------');
     }
+    */
   } catch (e) {
     print(e);
     return null;

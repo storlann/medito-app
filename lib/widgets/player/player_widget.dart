@@ -274,7 +274,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         padding: EdgeInsets.only(top: 32),
         child: Container(
           decoration: BoxDecoration(
-              shape: BoxShape.circle, color: MeditoColors.darkMoon),
+              shape: BoxShape.circle, color: MeditoColors.purple),
           child: IconButton(
               icon: Icon(
                 Icons.music_note_outlined,
@@ -333,13 +333,13 @@ class _PlayerWidgetState extends State<PlayerWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         PlayerButton(
-          primaryColor: primaryColorAsColor,
+          primaryColor: MeditoColors.darkCyan,
           child: SizedBox(
               width: 24,
               height: 24,
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(primaryColorAsColor),
-                backgroundColor: secondaryColor,
+                valueColor: AlwaysStoppedAnimation<Color>(MeditoColors.darkCyan),
+                backgroundColor: MeditoColors.darkCyan,
               )),
         ),
         _getBgMusicIconButton(hasBgSound)
@@ -366,8 +366,8 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         child: PlayerButton(
           icon: Icons.play_arrow,
           onPressed: () => _playPressed(hasBgSound),
-          secondaryColor: secondaryColor,
-          primaryColor: primaryColorAsColor,
+          secondaryColor: MeditoColors.buttonSecondary,
+          primaryColor: MeditoColors.buttonPrimary,
         ),
       );
 
@@ -380,9 +380,9 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         label: 'Pause button',
         child: PlayerButton(
           icon: Icons.pause,
-          secondaryColor: secondaryColor,
+          secondaryColor: MeditoColors.buttonSecondary,
           onPressed: AudioService.pause,
-          primaryColor: primaryColorAsColor,
+          primaryColor: MeditoColors.buttonPrimary,
         ),
       );
 
@@ -391,7 +391,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
       child: PositionIndicatorWidget(
-          mediaItem: mediaItem, state: state, color: primaryColorAsColor),
+          mediaItem: mediaItem, state: state, color: MeditoColors.darkCyan),
     );
   }
 

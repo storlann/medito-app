@@ -291,7 +291,7 @@ bool longerThanOneDayAgo(DateTime lastDayInStreak, DateTime now) {
 
 Future updateStatsFromBg() async {
   var read = await readJSONFromCache('stats');
-  print('read ->$read');
+  print('read -> $read');
 
   if (read.isNotEmptyAndNotNull()) {
     var map = decoded(read);

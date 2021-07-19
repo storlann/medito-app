@@ -56,7 +56,7 @@ class CoursesRowItemWidget extends StatelessWidget {
 
   Widget _createTitle(BuildContext context) {
     if (data != null) {
-      return Text(data.title, style: Theme.of(context).textTheme.headline4);
+      return Text(data.title, style: Theme.of(context).textTheme.headline4,);
     } else {
       return LoadingTextBoxWidget(height: 42);
     }

@@ -44,5 +44,8 @@ class MeditoColors {
   static const purple    = Color(0xff7f28dd);
   static const lavender  = Color(0xff9497dd);
 
+  static const buttonPrimary = Color(0xff7ec5c5);
+  static const buttonSecondary = Color(0xff008a8a);
+
   
 }
