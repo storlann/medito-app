@@ -23,7 +23,7 @@ class NavigationFactory {
         return _push(context, PlayerWidget(normalPop: normalPop));
         break;
       case Screen.videoPlayer:
-        return _push(context, VideoPlayerWidget(normalPop: normalPop, mediaItem: mediaItem));
+        return _push(context, VideoPlayerWidget(id: id, normalPop: normalPop, mediaItem: mediaItem));
         break;
       case Screen.article:
         return _push(

@@ -11,13 +11,16 @@ import 'package:Medito/network/player/player_bloc.dart';
 import 'package:Medito/network/auth.dart';
 import 'package:Medito/utils/stats_utils.dart';
 import 'package:chewie/chewie.dart';
+import 'package:Medito/network/cache.dart';
+import 'package:Medito/network/downloads/downloads_bloc.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
 
+  final String id;
   final normalPop;
   final MediaItem mediaItem;
 
-  VideoPlayerWidget({this.normalPop, this.mediaItem});
+  VideoPlayerWidget({this.id, this.normalPop, this.mediaItem});
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
@@ -29,6 +32,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   ChewieController _chewieController;
 
   bool _loaded = false;
+  bool _hasBeenPlayed = false;
+  bool _updatedStats = false;
+
   Color secondaryColor;
   Color primaryColorAsColor = MeditoColors.transparent;
   PlayerBloc _bloc;
@@ -45,6 +51,10 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
         if (widget.mediaItem != null) {
           print('initializing video player with media item '+widget.mediaItem.id);
+
+          //TODO use this to determine if we can use a cached version of the video file...
+          await DownloadsBloc.isMediaItemDownloaded(widget.mediaItem);
+
         _controller = VideoPlayerController.network(BASE_URL + 'assets/'+widget.mediaItem.id);
         await _controller.initialize();
 
@@ -54,17 +64,32 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             looping: true
         );
 
-        /* NOT WORKING YET - Trying to get the SharedPreferences / Stats module to record this video as complete
-                             so that the tick icon is displayed on the folder page like the audio files do.
-                             
+        // once the video has played through at least once,
+        // update the SharedPreferences to record that
+        _controller.addListener(() async {
+          var duration = _controller.value.duration.inSeconds-1;
+          var position = _controller.value.position.inSeconds;
 
-        _controller.addListener(() {
-          if (_controller.value.position == _controller.value.duration) {
-            //markAsListened(widget.mediaItem.id);
-            print('video Ended');
+          if (_hasBeenPlayed && position == 0) {
+            _updatedStats = false;
+          }
+
+          if((duration - position) < 1 ) {
+            //video has been played through...
+            _hasBeenPlayed = true;
+
+            if (!_updatedStats) {
+              _updatedStats = true;
+              var dataMap = {
+                'secsListened': (duration+1),
+                'id': '${widget.id}',
+              };
+              await writeJSONToCache(encoded(dataMap), 'stats');
+              await updateStatsFromBg();
+            }
           }
         });
-        */
+
 
         setState(() {
           _loaded = true;
@@ -257,9 +282,6 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           ],
         ));
   }
-
-
-
 
 
 

@@ -85,6 +85,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
 
     _bloc.saveOptionsSelectionsToSharedPreferences(widget.id);
 
+
     if (item.type == null || item.type == 'audio') {
       _bloc.startAudioService(item);
       NavigationFactory.navigate(context, Screen.player, id: widget.id);
@@ -171,7 +172,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
 
   Widget _getTrailing(MediaFile item) {
     //only audio can be downloaded at the moment
-    if (item.type !=null && item.type =="video") {
+    /*if (item.type !=null && item.type =="video") {
       return Padding(
         padding: const EdgeInsets.only(right: 12.0),
         child: Icon(
@@ -179,7 +180,7 @@ class _SessionOptionsScreenState extends State<SessionOptionsScreen> {
           color: MeditoColors.meditoTextGrey,
         )
       );
-    }
+    }*/
     if (_bloc.isDownloading(item)) {
       return IconButton(onPressed: () {}, icon: _getLoadingSpinner(item));
     }

@@ -240,7 +240,7 @@ void toggleListenedStatus(String id, String oldId) {
 }
 
 void markAsListened(String id) {
-  print('mark as listened');
+  //print('mark as listened');
   unawaited(sharedPreferences.setBool('listened' + id, true));
 }
 

@@ -44,6 +44,7 @@ class _Download {
   Future<dynamic> _downloadFileWithProgress(
       MediaFile currentFile, MediaItem mediaItem) async {
     var filePath = (await getFilePath(currentFile.id));
+
     var file = File(filePath);
     if (file.existsSync()) {
       unawaited(DownloadsBloc.saveFileToDownloadedFilesList(mediaItem));

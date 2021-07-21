@@ -58,12 +58,29 @@ class DownloadsBloc {
     var exists = false;
 
     list.forEach((element) {
-      if (element.artist == file.voice && element.extras[LENGTH] == file.length)
+
+      //if (element.artist == file.voice && element.extras[LENGTH] == file.length)
+      if(element.id == file.id) //TODO check if this always works...
         exists = true;
     });
 
     return exists;
   }
+
+  static Future<bool> isMediaItemDownloaded(MediaItem file) async {
+    var list = await fetchDownloads();
+    var exists = false;
+
+    list.forEach((element) {
+
+      //if (element.artist == file.voice && element.extras[LENGTH] == file.length)
+      if(element.id == file.id) //TODO check if this always works...
+        exists = true;
+    });
+
+    return exists;
+  }
+
 
   static Future<void> removeSessionFromDownloads(
       BuildContext context, MediaItem mediaFile) async {

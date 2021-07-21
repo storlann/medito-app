@@ -59,6 +59,7 @@ class ListItemWidget extends StatelessWidget {
   }
 
   Widget getAudioIcon() {
+
     if (checkListened(id, oldId: oldId)) {
       return Icon(
         Icons.check,
