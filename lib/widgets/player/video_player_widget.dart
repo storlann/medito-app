@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:Medito/utils/strings.dart';
@@ -13,6 +15,7 @@ import 'package:Medito/utils/stats_utils.dart';
 import 'package:chewie/chewie.dart';
 import 'package:Medito/network/cache.dart';
 import 'package:Medito/network/downloads/downloads_bloc.dart';
+import 'package:Medito/audioplayer/player_utils.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
 
@@ -53,9 +56,26 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           print('initializing video player with media item '+widget.mediaItem.id);
 
           //TODO use this to determine if we can use a cached version of the video file...
-          await DownloadsBloc.isMediaItemDownloaded(widget.mediaItem);
+          var cachedVersionAvailable = false;
+          cachedVersionAvailable = await DownloadsBloc.isMediaItemDownloaded(widget.mediaItem);
 
-        _controller = VideoPlayerController.network(BASE_URL + 'assets/'+widget.mediaItem.id);
+          if (cachedVersionAvailable) {
+            print("Media item already downloaded, playing from cache");
+            var filePath = (await getFilePath(widget.mediaItem.id));
+            var f = File(filePath);
+            var fExists = await f.exists();
+            if(fExists) {
+              _controller = VideoPlayerController.file(f);
+            } else {
+              print("cached file $f should exist but could not be found, defaulting to network playback");
+              _controller = VideoPlayerController.network(
+                  BASE_URL + 'assets/' + widget.mediaItem.id);
+            }
+          } else {
+            print("Playing media from network");
+            _controller = VideoPlayerController.network(
+                BASE_URL + 'assets/' + widget.mediaItem.id);
+          }
         await _controller.initialize();
 
         _chewieController = ChewieController(
@@ -103,6 +123,11 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   Widget build(BuildContext context) {
 
+    var aspectRatio = 1.0;
+    if(_loaded) {
+      print ("player loaded...");
+      aspectRatio = _controller.value.aspectRatio;
+    }
     return Scaffold(
       appBar: _getAppBar(widget.mediaItem),
       body: LayoutBuilder(
@@ -111,7 +136,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             child: FittedBox(
               fit: BoxFit.cover,
               child: SizedBox(
-                width: constraints.maxWidth * _controller.value.aspectRatio,
+                width: constraints.maxWidth * aspectRatio,
                 height: constraints.maxHeight,
                 child: _getVideoWidget()
               )
