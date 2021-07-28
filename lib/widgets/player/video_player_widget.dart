@@ -62,10 +62,12 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             print("Media item already downloaded, playing from cache");
             var filePath = (await getFilePath(widget.mediaItem.id));
             
-            // if filePath contains a space the player will hang forever at initialize step on iOS (but work on Android)
-            filePath = Uri.encodeFull(filePath);
             var f = File(filePath);
             var fExists = await f.exists();
+            
+			// if filePath contains a space the player will hang forever at initialize step on iOS (but work on Android)
+            filePath = Uri.encodeFull(filePath);
+			f = File(filePath);
             if(fExists) {
               print("Playing $f from cache...");
               _controller = VideoPlayerController.file(f);
