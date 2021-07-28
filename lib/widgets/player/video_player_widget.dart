@@ -32,7 +32,7 @@ class VideoPlayerWidget extends StatefulWidget {
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   VideoPlayerController _controller;
-  ChewieController _chewieController;
+  //ChewieController _chewieController;
 
   bool _loaded = false;
   bool _hasBeenPlayed = false;
@@ -65,9 +65,10 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             var f = File(filePath);
             var fExists = await f.exists();
             
-			// if filePath contains a space the player will hang forever at initialize step on iOS (but work on Android)
+			      // if filePath contains a space, which it does on iOS, the player will hang forever at initialize
+            // using URI encoded version with the file exists api call fails however
             filePath = Uri.encodeFull(filePath);
-			f = File(filePath);
+			      f = File(filePath);
             if(fExists) {
               print("Playing $f from cache...");
               _controller = VideoPlayerController.file(f);
@@ -81,13 +82,15 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             _controller = VideoPlayerController.network(
                 BASE_URL + 'assets/' + widget.mediaItem.id);
           }
+          _controller.setLooping(true);
         await _controller.initialize();
+        _controller.play();
 
-        _chewieController = ChewieController(
+        /*_chewieController = ChewieController(
             videoPlayerController: _controller,
             autoPlay: true,
             looping: true
-        );
+        );*/
 
         // once the video has played through at least once,
         // update the SharedPreferences to record that
@@ -133,6 +136,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       print ("player loaded...");
       aspectRatio = _controller.value.aspectRatio;
     }
+
+    print("aspect ratio is $aspectRatio");
+
     return Scaffold(
       appBar: _getAppBar(widget.mediaItem),
       body: LayoutBuilder(
@@ -140,11 +146,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           return SizedBox.expand(
             child: FittedBox(
               fit: BoxFit.cover,
-              child: SizedBox(
-                width: constraints.maxWidth * aspectRatio,
-                height: constraints.maxHeight,
-                child: _getVideoWidget()
-              )
+              child: _getVideoWidget(constraints)
             )
           );
         },
@@ -191,16 +193,33 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     );
   }
 
-  Widget _getVideoWidget() {
+  Widget _getVideoWidget(constraints) {
 
    if(_controller !=null && _controller.value.isInitialized) {
-     /*return AspectRatio(aspectRatio: _controller.value.aspectRatio,
-         child: VideoPlayer(_controller));*/
-     return Chewie(
-       controller: _chewieController,
+    var maxWidth = constraints.maxWidth;
+    var maxHeight = constraints.maxHeight;
+    var vidAR = _controller.value.aspectRatio;
+
+    //start off by trying to fill video to max width
+    var videoWidth = maxWidth;
+    var videoHeight = maxWidth/vidAR;
+
+    if (videoHeight>maxHeight) {
+      // need to scale width down a bit to fit it vertically...
+      videoHeight = maxHeight;
+      videoWidth = videoHeight*vidAR;
+    }
+     return SizedBox(
+       width: videoWidth,
+       height: videoHeight,
+       child: VideoPlayer(_controller),
      );
    }
-    return _getLoadingScreenWidget();
+    return SizedBox(
+      width: constraints.maxWidth,
+      height: constraints.maxHeight,
+      child: _getLoadingScreenWidget()
+    );
   }
 
 
@@ -318,7 +337,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   void dispose() {
     _controller?.dispose();
-    _chewieController?.dispose();
+    //_chewieController?.dispose();
     super.dispose();
   }
 }
