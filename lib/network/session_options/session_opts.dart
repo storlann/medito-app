@@ -175,14 +175,16 @@ class MediaFile {
   String voice;
   String length;
   String type;
+  int loops;
 
-  MediaFile({id, voice, length,type});
+  MediaFile({id, voice, length,type,loops});
 
   MediaFile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     voice = json['voice'];
     length = json['length'];
     type = json['type']; // audio or video
+    loops = json['loops']; // loop count
   }
 
   Map<String, dynamic> toJson() {
@@ -191,6 +193,7 @@ class MediaFile {
     data['voice'] = voice;
     data['length'] = length;
     data['type'] = type; // audio or video
+    data['loops'] = loops;
     return data;
   }
 }

@@ -137,7 +137,8 @@ class SessionOptionsBloc {
         fileId: file.id,
         sessionId: _options.id,
         attributions: _options.attribution,
-        type: file.type);
+        type: file.type,
+        loops: file.loops);
   }
 
   List<ExpandableItem> _generateExpandableItems(List<MediaFile> items) {

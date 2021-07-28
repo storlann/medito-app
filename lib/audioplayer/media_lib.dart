@@ -14,7 +14,8 @@ class MediaLibrary {
       String length,
         bool hasBgSound,
       int sessionId,
-      String type}) {
+      String type,
+      int loops}) {
     return MediaItem(
       id: fileId,
       extras: {
@@ -27,7 +28,8 @@ class MediaLibrary {
         LENGTH: length,
         DURATION: durationAsMilliseconds,
         HAS_BG_SOUND : hasBgSound,
-        type: type
+        TYPE: type, // whether item is audio or video
+        LOOPS: loops //how many times to loop item (usually applies to videos)
       },
       artist: voice,
       album: '', //empty to remove it from the notification
@@ -47,3 +49,6 @@ const String PRIMARY_COLOUR = 'primaryColor';
 const String ID = 'id';
 const String SESSION_ID = 'sessionId';
 const String LOCATION = 'location';
+
+const String TYPE = 'type';
+const String LOOPS = 'loops';

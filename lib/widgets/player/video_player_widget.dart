@@ -37,6 +37,10 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   bool _loaded = false;
   bool _hasBeenPlayed = false;
   bool _updatedStats = false;
+  int _noLoops = 0;
+  int _maxLoops=10; // may be over-ridden by value from MediaItem/JSON
+  bool _complete=false;
+
 
   Color secondaryColor;
   Color primaryColorAsColor = MeditoColors.transparent;
@@ -46,6 +50,10 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   void initState() {
     super.initState();
+
+    if (widget.mediaItem.extras['loops'] != null) {
+      _maxLoops = widget.mediaItem.extras['loops'];
+    }
 
     initVideoController();
   }
@@ -82,15 +90,10 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             _controller = VideoPlayerController.network(
                 BASE_URL + 'assets/' + widget.mediaItem.id);
           }
-          _controller.setLooping(true);
-        await _controller.initialize();
-        _controller.play();
+          await _controller.setLooping(true);
+          await _controller.initialize();
+          await _controller.play();
 
-        /*_chewieController = ChewieController(
-            videoPlayerController: _controller,
-            autoPlay: true,
-            looping: true
-        );*/
 
         // once the video has played through at least once,
         // update the SharedPreferences to record that
@@ -108,12 +111,24 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
             if (!_updatedStats) {
               _updatedStats = true;
-              var dataMap = {
-                'secsListened': (duration+1),
-                'id': '${widget.id}',
-              };
-              await writeJSONToCache(encoded(dataMap), 'stats');
-              await updateStatsFromBg();
+
+              setState(() {
+                _noLoops++;
+              });
+
+              if (_noLoops>=_maxLoops) {
+                _complete = true;
+                _controller.pause();
+
+                var dataMap = {
+                  'secsListened': (duration + 1)*_noLoops,
+                  'id': '${widget.id}',
+                };
+
+                await writeJSONToCache(encoded(dataMap), 'stats');
+                await updateStatsFromBg();
+              }
+
             }
           }
         });
@@ -131,53 +146,18 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   Widget build(BuildContext context) {
 
-    var aspectRatio = 1.0;
-    if(_loaded) {
-      print ("player loaded...");
-      aspectRatio = _controller.value.aspectRatio;
-    }
-
-    print("aspect ratio is $aspectRatio");
-
     return Scaffold(
       appBar: _getAppBar(widget.mediaItem),
-      body: LayoutBuilder(
-        builder: (context,constraints) {
-          return SizedBox.expand(
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: _getVideoWidget(constraints)
-            )
-          );
-        },
+      body: _complete ?
+      Center(
+          child: Text("Deiseil")
+      ) :
+      LayoutBuilder(
+      builder: (context,constraints){
+        return _getVideoWidget(constraints);
+        }
       )
-
-      /*body:  Stack(
-                children: [
-                  _getGradientWidget(widget.mediaItem, context),
-                  _getGradientOverlayWidget(),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        _getAppBar(widget.mediaItem),
-                        _getTitleRow(widget.mediaItem),
-                        _getSubtitleWidget(widget.mediaItem),
-                        _getVideoWidget()
-                    ]),
-                  /*FloatingActionButton(
-                      onPressed: () {
-                        setState(() {
-                          _controller.value.isPlaying ? _controller.pause() : _controller.play();
-                        });
-                      },
-                      child: Icon(
-                        _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                      )
-                  )*/
-                ])*/
-      );
-
+    );
 
 
   }
@@ -209,11 +189,30 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       videoHeight = maxHeight;
       videoWidth = videoHeight*vidAR;
     }
-     return SizedBox(
-       width: videoWidth,
-       height: videoHeight,
-       child: VideoPlayer(_controller),
-     );
+
+    return Stack(
+
+      children: [
+        SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child:SizedBox(
+              width: videoWidth,
+              height: videoHeight,
+              child: VideoPlayer(_controller)
+            )
+          )
+        ),
+        Container(
+           padding: EdgeInsets.all(5),
+           alignment: Alignment.bottomRight,
+           child: Text(
+               '${_noLoops+1}/$_maxLoops',
+               style: TextStyle(color: Colors.black, fontSize: 20)
+           )
+         )
+      ],
+    );
    }
     return SizedBox(
       width: constraints.maxWidth,
@@ -244,7 +243,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   MeditoAppBarWidget _getAppBar(MediaItem mediaItem) {
     return MeditoAppBarWidget(
-      transparent: true,
+      transparent: false,
       hasCloseButton: true,
       closePressed: _onBackPressed,
     );
