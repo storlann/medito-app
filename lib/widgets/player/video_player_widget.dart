@@ -55,16 +55,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         if (widget.mediaItem != null) {
           print('initializing video player with media item '+widget.mediaItem.id);
 
-          //TODO use this to determine if we can use a cached version of the video file...
           var cachedVersionAvailable = false;
           cachedVersionAvailable = await DownloadsBloc.isMediaItemDownloaded(widget.mediaItem);
 
           if (cachedVersionAvailable) {
             print("Media item already downloaded, playing from cache");
             var filePath = (await getFilePath(widget.mediaItem.id));
+            
+            // if filePath contains a space the player will hang forever at initialize step on iOS (but work on Android)
+            filePath = Uri.encodeFull(filePath);
             var f = File(filePath);
             var fExists = await f.exists();
             if(fExists) {
+              print("Playing $f from cache...");
               _controller = VideoPlayerController.file(f);
             } else {
               print("cached file $f should exist but could not be found, defaulting to network playback");
