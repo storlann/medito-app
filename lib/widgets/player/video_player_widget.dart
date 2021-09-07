@@ -41,6 +41,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   int _maxLoops=10; // may be over-ridden by value from MediaItem/JSON
   bool _complete=false;
 
+  int _videoDuration;
+  int _videoPosition;
+
 
   Color secondaryColor;
   Color primaryColorAsColor = MeditoColors.transparent;
@@ -92,19 +95,34 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           }
           await _controller.setLooping(true);
           await _controller.initialize();
+          _videoDuration = _controller.value.duration.inSeconds;
+          _videoPosition = 0; //we will update this in the event listener
+          var lastRecordedPos=0;
           await _controller.play();
 
 
-        // once the video has played through at least once,
-        // update the SharedPreferences to record that
+        // event listener updates as video plays
         _controller.addListener(() async {
           var duration = _controller.value.duration.inSeconds-1;
           var position = _controller.value.position.inSeconds;
 
           if (_hasBeenPlayed && position == 0) {
             _updatedStats = false;
+            lastRecordedPos=0;
+          }
+          
+          //update circular progress indicator every 4 seconds
+          if (position - lastRecordedPos >= 4) {
+            setState(() {
+              _videoPosition = position;
+              print("update position: ${_videoPosition/_videoDuration}");
+              });
+            lastRecordedPos = _videoPosition;
           }
 
+
+          // once the video has played through at least once,
+          // update the SharedPreferences to record that
           if((duration - position) < 1 ) {
             //video has been played through...
             _hasBeenPlayed = true;
@@ -190,6 +208,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       videoWidth = videoHeight*vidAR;
     }
 
+    // note that we hide the loop counter if maxloops==1 (ie the video loops only once)
     return Stack(
 
       children: [
@@ -205,12 +224,20 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         ),
         Container(
            padding: EdgeInsets.all(5),
-           alignment: Alignment.bottomRight,
-           child: Text(
+           alignment: Alignment.bottomRight, 
+           child: _maxLoops == 1 ? Container() : Text(
                '${_noLoops+1}/$_maxLoops',
                style: TextStyle(color: Colors.black, fontSize: 20)
            )
-         )
+         ),
+        Container(
+          padding: EdgeInsets.all(5),
+          alignment: Alignment.bottomLeft,
+          child: CircularProgressIndicator(
+            value: _controller.value.position.inSeconds/_controller.value.duration.inSeconds,
+            backgroundColor: Colors.grey[300]
+            )
+          )
       ],
     );
    }
