@@ -22,6 +22,7 @@ class MeditoAppBarWidget extends StatelessWidget with PreferredSizeWidget {
       this.title,
       this.titleWidget,
       this.transparent = false,
+      this.backgroundColor,
       this.hasCloseButton = false,
         this.actions,
       this.closePressed})
@@ -33,9 +34,19 @@ class MeditoAppBarWidget extends StatelessWidget with PreferredSizeWidget {
   final transparent;
   final actions;
   final String title;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
+
+    var bgCol=Colors.transparent;
+    if(!transparent) {
+      if (backgroundColor==null) {
+        bgCol = MeditoColors.moonlight;
+      } else {
+        bgCol = backgroundColor;
+      }
+    }
     return AppBar(
         // leading: null,  defaults to implied leading
         leading: hasCloseButton ? CloseButton(onPressed: closePressed ?? closePressed,) : null,
@@ -44,8 +55,7 @@ class MeditoAppBarWidget extends StatelessWidget with PreferredSizeWidget {
         elevation: 0,
         backwardsCompatibility: true,
         brightness: Brightness.dark,
-        backgroundColor:
-            transparent ? Colors.transparent : MeditoColors.moonlight,
+        backgroundColor: bgCol,
         title: getTitleWidget(context));
   }
 

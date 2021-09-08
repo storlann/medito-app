@@ -273,6 +273,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       transparent: false,
       hasCloseButton: true,
       closePressed: _onBackPressed,
+      backgroundColor: MeditoColors.newGrey,
     );
   }
 
