@@ -1,0 +1,28 @@
+Notes on compiling a release build for Android using flutter cmd line:
+
+Create a file, key.properties, in "android" directory.
+
+Should contain something like this:
+
+	storePassword=secret
+	keyAlias=upload_flutter
+	keyPassword=same as store pwd
+	storeFile=/home/donald_i/Dropbox/androidKeystore
+	appId=uk.co.storlann.mothachas
+
+Then review and edit the build.gradle file stored at android/app/build.gradle
+
+Here you need to set or update the version id (an int) as well as the version string.
+
+Check it is referencing the key file.
+
+Check the AppId is correct (it may come from your key file or it might be hardcoded).
+
+Then run "flutter build appbundle" to make the aab.
+
+More info available from https://flutter.dev/docs/deployment/android
+
+NB the easiest way to set your app icon is to use the flutter_launcher_icons package.
+https://pub.dev/packages/flutter_launcher_icons
+
+

@@ -20,10 +20,11 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
+//apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
 
 def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('keystore.properties')
+def keystorePropertiesFile = rootProject.file('key.properties')
+println keystorePropertiesFile
 
 def configured = true
 try {
@@ -60,6 +61,12 @@ if (project.APP_ID == "DEFAULT_DO_NOT_USE") {
 if (!configured) {
     logger.error('The app could not be configured for release signing. In app purchases will not be testable. See `example/README.md` for more info and instructions.')
 }
+/*
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+	keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}*/
 
 android {
     compileSdkVersion 30
@@ -70,17 +77,20 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId project.APP_ID
+        //applicationId project.APP_ID
+        applicationId "uk.co.storlann.mothachas"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode project.VERSION_CODE
-        versionName project.VERSION_NAME
+        //versionCode project.VERSION_CODE
+        versionCode 1
+        //versionName project.VERSION_NAME
+        versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
-        signingConfigs {
+        /*signingConfigs {
             release {
                 if (System.getenv()["CI"]) { // CI=true is exported by Codemagic or GH Actions
                     storeFile file(System.getenv()["FCI_KEYSTORE_PATH"])
@@ -94,12 +104,18 @@ android {
                     keyPassword project.KEYSTORE_KEY_PASSWORD
                 }
             }
-        }
+        }*/
+		release {
+			keyAlias keystoreProperties['keyAlias']
+			keyPassword keystoreProperties['keyPassword']
+			storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+			storePassword keystoreProperties['storePassword']
+		}
     }
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            shrinkResources false
+            //shrinkResources false
         }
     }
 
