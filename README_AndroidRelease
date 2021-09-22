@@ -24,5 +24,16 @@ More info available from https://flutter.dev/docs/deployment/android
 
 NB the easiest way to set your app icon is to use the flutter_launcher_icons package.
 https://pub.dev/packages/flutter_launcher_icons
+(Although the last time I used it it didn't generate adaptive icons for me.)
 
+This will generate an aab file, which you can't side-load to your device for testing.
 
+But you *can* turn it into an apk using the bundletool:
+
+java -jar ~/Downloads/bundletool-all-1.8.0.jar build-apks --bundle=build/app/outputs/bundle/release/app-release.aab  --output=mothachas.apks
+
+Followed by:
+
+java -jar ~/Downloads/bundletool-all-1.8.0.jar install-apks --apks=mothachas.apks
+
+(Bundletool jar available from Google.)
